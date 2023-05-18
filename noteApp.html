@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="noteApp.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"/>
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    rel="stylesheet"/>
+    <title>Notes App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Notes App</h1>
+        <button class="note-add" type="button"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div class="notes"></div>
+    </div>
+    <script >
+  const notesEl = document.querySelector('.notes');
+  const addBtn = document.querySelector('.note-add')
+const createNote = (title, text) => {
+  const noteEl = document.createElement('div');
+  noteEl.classList.add('note');
+  const pNoteTitle = document.createElement('p')
+  pNoteTitle.setAttribute('id', 'note-title')
+  const textAreaTitle = document.createElement('textarea')
+  textAreaTitle.setAttribute('id', 'note-title-input')
+  const textAreaText = document.createElement('textarea')
+  textAreaText.setAttribute('id', 'note-textarea')
+  textAreaTitle.classList.add('hidden')
+  textAreaTitle.setAttribute('name', 'title')
+  textAreaText.classList.add('hidden')
+  textAreaText.setAttribute('name', 'text')
+  const form = document.createElement('form')
+  const pNoteText = document.createElement('p')
+  pNoteText.setAttribute('id', 'note-text')
+  const divNoteHeader = document.createElement('div')
+  divNoteHeader.classList.add('note-header')
+  const div = document.createElement('div')
+  const btnNoteEdit = document.createElement('button');
+  btnNoteEdit.classList.add('note-edit')
+  btnNoteEdit.innerHTML = '<i class = "fa-solid fa-pen-to-square"></i>'
+  const btnNoteDelete = document.createElement('button');
+  btnNoteDelete.classList.add('note-delete')
+  btnNoteDelete.innerHTML = '<i class="fa-solid fa-trash"></i>'
+  div.append(btnNoteEdit);
+  div.append(btnNoteDelete)
+  pNoteTitle.innerText = title;
+  div.append(pNoteTitle)
+  textAreaTitle.innerText = title;
+  form.append(textAreaTitle)
+  div.append(form);
+  divNoteHeader.append(div)
+  noteEl.append(divNoteHeader)
+  pNoteText.innerText=text;
+  noteEl.append(pNoteText)
+  textAreaText.innerText=text;
+  form.append(textAreaText)
+  noteEl.append(form);
+  const editBtn = noteEl.querySelector('.note-edit');
+  const deleteBtn = noteEl.querySelector('.note-delete');
+  const titleEl = noteEl.querySelector('#note-title');
+  const textEl = noteEl.querySelector('#note-text');
+  const titleInputEl = noteEl.querySelector('#note-title-input');
+  const textInputEl = noteEl.querySelector('#note-textarea');
+
+  editBtn.addEventListener('click', (event) => {
+    titleEl.classList.toggle('hidden');
+    textEl.classList.toggle('hidden');
+
+    titleInputEl.classList.toggle('hidden');
+    textInputEl.classList.toggle('hidden');
+  });
+
+  deleteBtn.addEventListener('click', (event) => {
+    noteEl.remove();
+  });
+
+  titleInputEl.addEventListener('input', (event) => {
+    titleEl.innerText = event.target.value;
+   
+  });
+
+  textInputEl.addEventListener('input', (event) => {
+    textEl.innerText = event.target.value;
+    
+  });
+
+  return noteEl;
+}
+
+addBtn.addEventListener('click', (event) => {
+  const element = createNote("Заголовок", "Ваш текст");
+  notesEl.appendChild(element);
+});
+
+
+
+    </script>
+  </body>
+</html>

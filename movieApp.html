@@ -1,0 +1,115 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<link rel = "stylesheet" href = "MovieApp.css"> 
+<meta charset="utf-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Пример веб-страницы</title> 
+</head> 
+<style> 
+</style> 
+<body> 
+    <div class ="container"> 
+        <form class ="search-container"> 
+            <input type="text" id="movie-name" placeholder="Enter name movie here..."> 
+            <button id ="search-btn">Search</button> 
+        </form> 
+        <div id="result"></div> 
+    </div> 
+<script> 
+const key = '80f226eb'; 
+const movieNameRef = document.getElementById("movie-name"); 
+const searchBtn = document.getElementById("search-btn"); 
+const result = document.getElementById("result"); 
+const movieName = document.getElementById("movie-name"); 
+ 
+if(movieNameRef.value == 0){ 
+    result.innerText = "Please enter a movie name"; 
+} 
+ 
+function myAsyncFoo(url){  
+     return fetch(url);  
+ }  
+ 
+const createFilms = (data)=>{  
+    if(data.Response == "True"){ 
+        const divInfo = document.createElement('div') 
+        divInfo.classList.add('info') 
+        const divDetails = document.createElement('div') 
+        divDetails.classList.add('details') 
+        const divGenre = document.createElement('div') 
+        divGenre.classList.add('genre') 
+        const divForGenre = document.createElement('div') 
+        divForGenre.classList.add('genre2') 
+        const divRating = document.createElement('div');  
+        divRating.classList.add('rating') 
+        const divPlotAndActors = document.createElement('div') 
+        const h2 = document.createElement('h2'); 
+        const h3 = document.createElement('h3') 
+        const h4 = document.createElement('h4'); 
+        const p1 = document.createElement('p');  
+        const p2 = document.createElement('p');  
+        const image = document.createElement('img');  
+        image.classList.add('poster') 
+        const span1 = document.createElement('span'); 
+        const span2 = document.createElement('span'); 
+        const span3 = document.createElement('span'); 
+        image.setAttribute('src', data.Poster);  
+        divInfo.append(image);  
+        h2.innerText = data.Title; 
+        divInfo.append(h2); 
+        h4.innerText = 'Rating: ' + data.imdbRating; 
+        divRating.append(h4); 
+        divInfo.append(divRating) 
+        span1.innerText = data.Rated; 
+        divDetails.append(span1); 
+        span2.innerText = data.Year; 
+        divDetails.append(span2); 
+        span3.innerText = data.Runtime; 
+        divDetails.append(span3); 
+        divInfo.append(divDetails) 
+        divForGenre.innerText = data.Genre.split(',').join(" "); 
+        divGenre.append(divForGenre) 
+        divInfo.append(divGenre) 
+        result.append(divInfo); 
+        p1.innerText = 'Plot: '+data.Plot; 
+        result.append(p1); 
+        p2.innerText = 'Cast: '+data.Actors; 
+        result.append(p2); 
+                 
+    } 
+} 
+ 
+const movieNotFound = (data)=>{ 
+    if(data.Response == "False"){ 
+        const h3 = document.createElement('h3'); 
+        h3.classList.add('h3') 
+        h3.innerText=data.Error; 
+        result.append(h3) 
+    } 
+} 
+ 
+const handleSearcheFilm = (event) => { 
+    event.preventDefault(); 
+    const data = movieName.value 
+    const myUrl = `http://www.omdbapi.com/?t=${data}&apikey=${key}`; 
+    myAsyncFoo(myUrl).then(response => response.json())  
+    .then(data => createFilms(data))  
+    result.innerHTML = null; 
+} 
+ 
+const movieIsntFound = (event) =>{ 
+    event.preventDefault(); 
+    const data = movieName.value 
+    const myUrl = `http://www.omdbapi.com/?t=${data}&apikey=${key}`; 
+    myAsyncFoo(myUrl).then(response => response.json())  
+    .then(data => movieNotFound(data)) 
+    result.innerHTML = null; 
+} 
+ 
+searchBtn.addEventListener("click", handleSearcheFilm); 
+searchBtn.addEventListener("click",movieIsntFound); 
+</script> 
+</body> 
+</html>

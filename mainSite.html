@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<link rel = "stylesheet" href = "mainSite.css"> 
+<meta charset="utf-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Пример веб-страницы</title> 
+</head> 
+<style> 
+</style> 
+<body> 
+<div class ="container"> 
+    <div class = "divForNav">
+    <div class = "nav"> 
+        <ul> 
+            <li class = "list"> <a href = "/F:/calc.html">
+                    <span class = "icon">
+                        <ion-icon name="calculator"></ion-icon>
+                    </span>
+                    <span class = "text">Calculator</span>
+                 </a>
+            </li> 
+          
+            <li class = "list"> <a href = "/F:/MovieApp.html">
+                <span class = "icon">
+                    <ion-icon name="film"></ion-icon>
+                </span>
+                <span class = "text">MovieApp</span>
+                </a>
+            </li> 
+            <li class = "list"> <a href = "/F:/noteApp.html">
+                <span class = "icon">
+                    <ion-icon name="bookmark"></ion-icon>
+                </span>
+                <span class = "text">Notes</span>
+               </a>
+           </li>  
+           <div class = "indicator"></div>
+          </ul> 
+        </div> 
+    </div>
+        <div class ="forH2"><h2 class = "text"> This is my site in which u can find calculator, ur favourite film or write a note </h2></div> 
+    </div> 
+    <script>
+        const list = document.querySelectorAll('.list')
+        function activeLink(){
+            list.forEach((item) => item.classList.remove('active'));
+            this.classList.add('active');
+        }
+
+        list.forEach((item) => item.addEventListener('click', activeLink))
+    </script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body> 
+</html>

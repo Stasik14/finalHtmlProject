@@ -1,0 +1,86 @@
+*, 
+*::before, 
+*::after{ 
+    box-sizing: inherit; 
+    margin: 0; 
+    padding:0; 
+} 
+ 
+html{ 
+    box-sizing: border-box; 
+    height:100%; 
+} 
+ 
+body{ 
+    background-color: gray; 
+    display: flex; 
+    align-items: center; 
+    font-family: 'Dosis',sans-serif; 
+    font-size: swap; 
+    height:inherit; 
+    justify-content: center; 
+} 
+ 
+.container{ 
+    background: black; 
+    border:1px solid black; 
+    border-radius: 16px; 
+    box-shadow: 0 4px 30px black; 
+    color:black; 
+    background: black; 
+    flex-basis: 400px; 
+    height:540px; 
+    padding:20px 35px; 
+} 
+ 
+.screen{ 
+    background-color: white; 
+    border:1px solid white; 
+    border-radius: 16px; 
+    box-shadow: 0 4px 30px white; 
+    color:black; 
+    font-size: 35px; 
+    overflow: auto; 
+    padding: 20px; 
+    text-align: right; 
+    width:326px; 
+} 
+ 
+.button-row{ 
+    display: flex; 
+    justify-content: space-between; 
+    margin:5% 0; 
+} 
+ 
+.button{ 
+    background:white; 
+    border-radius: 16px; 
+    color:black; 
+    flex-basis: 20%; 
+    font-family: inherit; 
+    font-size: 24px; 
+    height:65px; 
+} 
+ 
+.button:last-child{ 
+    background:white; 
+    border-radius: 16px; 
+    color:black; 
+    background: orange; 
+} 
+ 
+.button:active{ 
+    background-color:gray; 
+} 
+ 
+.button:last-child:active{ 
+    background-color: rgb(158, 112, 14); 
+} 
+ 
+.double{ 
+    flex-basis:47%; 
+} 
+ 
+.triple{ 
+    flex-basis: 73%; 
+}
